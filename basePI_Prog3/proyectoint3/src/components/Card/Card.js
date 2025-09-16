@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import React, { Component } from "react";
-import './moviecard.css'
+import './card.css'
 
 
 class MovieCard extends Component {
@@ -30,25 +30,22 @@ boton(){
     }
 }
 componentDidMount(){
-  let favsString = localStorage.getItem('personajesFavs');
+  let favsString = localStorage.getItem('Favs');
   let favsArray = favsString ? JSON.parse(favsString) : [];
-  console.log('Favoritos en localStorage:', favsArray);
-
   let esFavorito = favsArray.some(fav => fav.id === this.props.id);
-  console.log('Es favorito?', esFavorito, 'ID comparando:', this.props.id);
 
   this.setState({
     fav: esFavorito
   });
 }
 agregarFavoritos = () => {
-  let favsString = localStorage.getItem('personajesFavs');
+  let favsString = localStorage.getItem('Favs');
   let favsArray = favsString ? JSON.parse(favsString) : [];
 
   if (this.state.fav === false) {
     if (!favsArray.find(fav => fav.id === this.props.id)) {
       favsArray.push(this.props);
-      localStorage.setItem('personajesFavs', JSON.stringify(favsArray));
+      localStorage.setItem('Favs', JSON.stringify(favsArray));
     }
     
     this.setState({
@@ -56,7 +53,7 @@ agregarFavoritos = () => {
     });
   } else {
     favsArray = favsArray.filter(fav => fav.id !== this.props.id);
-    localStorage.setItem('personajesFavs', JSON.stringify(favsArray));
+    localStorage.setItem('Favs', JSON.stringify(favsArray));
   
     this.setState({
       fav: false
@@ -69,13 +66,13 @@ render(){
     return (
         <article className='movie-card'>
           <div className="movie-image">
-          <img src={this.props.img}/>
+          <img src={this.props.img} alt=""/>
           </div>
           <div className="movie-content">
-        <Link to={this.props.link}><h2 className="movie-title">{this.props.name}</h2></Link>
+        <h2 className="movie-title">{this.props.name}</h2>
         <button onClick={ ()=> this.boton() } className='more'> {this.state.textoboton} </button> 
         {this.state.vermas===true ? <section className="movie-description"><p>{this.props.desc}</p></section> : ""}
-        <button onClick='' className='delete'>Ir a Detalle</button>
+        <Link to={this.props.link} className='delete'>Ir a Detalle</Link>
         <button onClick={() => this.agregarFavoritos()} className="star">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
             fill={this.state.fav ? "gold" : "none"} 
