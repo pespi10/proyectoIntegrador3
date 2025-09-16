@@ -1,7 +1,7 @@
 import React from "react";
-import './navbar.css'
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-function Navbar({ nombre, menuItems }) {
+import './header.css'
+import { Link } from "react-router-dom";
+function Header({ nombre, menuItems }) {
     return (
       <nav>
         <img src='/assets/img/momo.png' className="logo" alt=""/>
@@ -17,4 +17,4 @@ function Navbar({ nombre, menuItems }) {
     );
   }
 
-export default Navbar;
+export default Header;
