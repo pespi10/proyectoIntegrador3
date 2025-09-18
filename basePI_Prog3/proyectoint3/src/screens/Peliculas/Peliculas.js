@@ -105,7 +105,7 @@ const options = {
     <h2>Movies now playing</h2>
 
     <form className="buscador" onSubmit={(event)=>this.evitarSubmit(event)}>
-          <input type='text' placeholder="Buscar un personaje..." onChange={(event)=>this.controlarCambios(event)} value={this.state.input}></input>
+          <input type='text' placeholder="Buscar una pelicula..." onChange={(event)=>this.controlarCambios(event)} value={this.state.input}></input>
           <input type="submit" value="Buscar"/>
         </form>
 
@@ -126,7 +126,7 @@ const options = {
      <h2>Movies most popular</h2>
 
      <form className="buscador" onSubmit={(event)=>this.evitarSubmitPop(event)}>
-          <input type='text' placeholder="Buscar un personaje..." onChange={(event)=>this.controlarCambiosPopular(event)} value={this.state.inputPopular}></input>
+          <input type='text' placeholder="Buscar una pelicula..." onChange={(event)=>this.controlarCambiosPopular(event)} value={this.state.inputPopular}></input>
           <input type="submit" value="Buscar"/>
         </form>
 

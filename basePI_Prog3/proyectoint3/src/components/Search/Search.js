@@ -24,7 +24,7 @@ render (){
     return(
         
         <form className="buscador" onSubmit={this.evitarSubmit}>
-          <input type='text' placeholder="Buscar un personaje..." onChange={this.controlarCambios} value={this.state.name}></input>
+          <input type='text' placeholder="Buscar una pelicula o serie..." onChange={this.controlarCambios} value={this.state.name}></input>
           <input type="submit" value="Buscar"/>
         </form>    
         )
