@@ -1,4 +1,3 @@
-import AllMovies from '../../components/AllMovies/AllMovies';
 import Card from '../../components/Card/Card';
 import React, { Component } from 'react';
 
@@ -18,13 +17,17 @@ const options = {
     this.state = {
       peliculasTodas: [],
       limite: 6,
-      input:''
+      input:'',
+      popularesTodas: [],
+      limitePopular: 6,
+      inputPopular: ''
     };
 
   }
 
   componentDidMount(){
-    this.peliculasTotal()
+    this.peliculasTotal();
+    this.peliculasPopulares()
   }
 
   peliculasTotal = () => {
@@ -39,14 +42,32 @@ const options = {
         console.log('Error al cargar películas en cartel:', error)
       });
   }
+  peliculasPopulares = () => {
+    fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          popularesTodas: data.results
+        });
+      })
+      .catch(error => {
+        console.log('Error al cargar películas en cartel:', error)
+      });
+  }
 
   cargarMas= () => {
 
-    this.setState(prev=>({
-      limite: prev.limite + 6
+    this.setState(mas=>({
+      limite: mas.limite + 6
     }))
 
 
+  }
+
+  cargarMasPopular = () => {
+    this.setState(mas => ({
+      limitePopular: mas.limitePopular + 6
+    }));
   }
 
    controlarCambios = (event) => {
@@ -60,18 +81,33 @@ const options = {
 
   }
 
+
+  controlarCambiosPopular = (event) => {
+    this.setState({inputPopular: event.target.value}, ()=>console.log(this.state.inputPopular))
+  }
+  evitarSubmitPop(event){
+  event.preventDefault();
+  if (this.state.inputPopular.trim() !== '') {
+    this.props.history.push('/busqueda/' + this.state.inputPopular);
+  }
+
+  }
+
   render(){
      let peliculasBusqueda = this.state.input === '' ? this.state.peliculasTodas : this.state.peliculasTodas.filter(pelicula => pelicula.title.toLowerCase().includes(this.state.input.toLowerCase()))
-    return(
+    let peliculasBusquedaPopular = this.state.inputPopular === '' ? this.state.popularesTodas : this.state.popularesTodas.filter(pelicula => pelicula.title.toLowerCase().includes(this.state.inputPopular.toLowerCase()))
+     return(
         <React.Fragment>
-        <form className="buscador" onSubmit={(event)=>this.evitarSubmit(event)}>
-          <input type='text' placeholder="Buscar un personaje..." onChange={(event)=>this.controlarCambios(event)} value={this.state.input}></input>
-          <input type="submit" value="Buscar"/>
-        </form>
+        
 
 
   <main>
-    <h2>Movies</h2>
+    <h2>Movies now playing</h2>
+
+    <form className="buscador" onSubmit={(event)=>this.evitarSubmit(event)}>
+          <input type='text' placeholder="Buscar un personaje..." onChange={(event)=>this.controlarCambios(event)} value={this.state.input}></input>
+          <input type="submit" value="Buscar"/>
+        </form>
 
     <section className="card-container">
                 {peliculasBusqueda.slice(0, this.state.limite).map(movie => (
@@ -86,6 +122,28 @@ const options = {
                 ))}
               </section>
               <button onClick={() => this.cargarMas()}>Cargar más</button>
+
+     <h2>Movies most popular</h2>
+
+     <form className="buscador" onSubmit={(event)=>this.evitarSubmitPop(event)}>
+          <input type='text' placeholder="Buscar un personaje..." onChange={(event)=>this.controlarCambiosPopular(event)} value={this.state.inputPopular}></input>
+          <input type="submit" value="Buscar"/>
+        </form>
+
+     <section className="card-container">
+                {peliculasBusquedaPopular.slice(0, this.state.limitePopular).map(movie => (
+                  <Card 
+                    key={movie.id}
+                    id={movie.id}
+                    name={movie.title}
+                    img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    desc={movie.overview}
+                    link={`/peliculas/detalle/${movie.id}`}
+                  />
+                ))}
+              </section>
+              <button onClick={() => this.cargarMasPopular()}>Cargar más</button>
+
               </main>
              
 </React.Fragment>
