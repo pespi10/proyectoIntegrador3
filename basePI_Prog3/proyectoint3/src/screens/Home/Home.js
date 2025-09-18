@@ -56,8 +56,6 @@ class Home extends Component {
   }
 
   render() {
-    const { nowPlaying, popular, cargandoPlaying, cargandoPopular } = this.state;
-
     return (
       <React.Fragment>
         <h1>Gero Movies</h1>
@@ -69,11 +67,11 @@ class Home extends Component {
               <Link to="/peliculas/nowplaying">Ver todas</Link>
             </div>
             
-            {cargandoPlaying ? (
+            {this.state.cargandoPlaying ? (
               <p>Loading movies...</p>
             ) : (
               <section className="card-container">
-                {nowPlaying.map(movie => (
+                {this.state.nowPlaying.map(movie => (
                   <Card 
                     key={movie.id}
                     id={movie.id}
@@ -92,11 +90,11 @@ class Home extends Component {
               <Link to="/peliculas/popular">Ver todas</Link>
             </div>
             
-            {cargandoPopular ? (
+            {this.state.cargandoPopular ? (
               <p>Loading movies...</p>
             ) : (
               <section className="card-container">
-                {popular.map(movie => (
+                {this.state.popular.map(movie => (
                   <Card 
                     key={movie.id}
                     id={movie.id}
