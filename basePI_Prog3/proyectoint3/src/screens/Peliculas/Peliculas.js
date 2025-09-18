@@ -1,8 +1,7 @@
-import React from 'react';
 import AllMovies from '../../components/AllMovies/AllMovies';
-import Header from '../../components/Header/header';
-import Footer from '../../components/Footer/footer';
 import Card from '../../components/Card/Card';
+import React, { Component } from 'react';
+
 
 const options = {
     method: 'GET',
@@ -17,7 +16,7 @@ const options = {
     constructor(props) {
     super(props);
     this.state = {
-      peliculasTotal: [],
+      peliculasTodas: [],
       limite: 6
     };
 
@@ -32,7 +31,7 @@ const options = {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          peliculasTotal: data.results
+          peliculasTodas: data.results
         });
       })
       .catch(error => {
@@ -49,15 +48,32 @@ const options = {
 
   }
 
+   controlarCambios = (event) => {
+    this.setState({input: event.target.value}, ()=>console.log(this.state.input))
+  }
+  evitarSubmit(event){
+  event.preventDefault();
+  if (this.state.input.trim() !== '') {
+    this.props.history.push('/busqueda/' + this.state.input);
+  }
+
+  }
+
   render(){
-    const peliculasTotal=this.state ;
- <React.Fragment>
-  <Header />
+     let peliculasBusqueda = this.state.input === '' ? this.state.datos : this.state.datos.filter(personaje => personaje.name.toLowerCase().includes(this.state.input.toLocaleLowerCase()))
+    return(
+        <React.Fragment>
+        <form className="buscador" onSubmit={(event)=>this.evitarSubmit(event)}>
+          <input type='text' placeholder="Buscar un personaje..." onChange={(event)=>this.controlarCambios(event)} value={this.state.input}></input>
+          <input type="submit" value="Buscar"/>
+        </form>
+
+
   <main>
     <h2>Movies</h2>
 
     <section className="card-container">
-                {peliculasTotal.map(movie => (
+                {this.state.peliculasTodas.slice(0, this.state.limite).map(movie => (
                   <Card 
                     key={movie.id}
                     id={movie.id}
@@ -68,10 +84,11 @@ const options = {
                   />
                 ))}
               </section>
+              <button onClick={() => this.cargarMas()}>Cargar más</button>
               </main>
-              <Footer/>
+             
 </React.Fragment>
-  }
+  )}
 
 
 }
