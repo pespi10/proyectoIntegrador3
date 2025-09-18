@@ -17,7 +17,8 @@ const options = {
     super(props);
     this.state = {
       peliculasTodas: [],
-      limite: 6
+      limite: 6,
+      input:''
     };
 
   }
@@ -60,7 +61,7 @@ const options = {
   }
 
   render(){
-     let peliculasBusqueda = this.state.input === '' ? this.state.datos : this.state.datos.filter(personaje => personaje.name.toLowerCase().includes(this.state.input.toLocaleLowerCase()))
+     let peliculasBusqueda = this.state.input === '' ? this.state.peliculasTodas : this.state.peliculasTodas.filter(pelicula => pelicula.title.toLowerCase().includes(this.state.input.toLowerCase()))
     return(
         <React.Fragment>
         <form className="buscador" onSubmit={(event)=>this.evitarSubmit(event)}>
@@ -73,7 +74,7 @@ const options = {
     <h2>Movies</h2>
 
     <section className="card-container">
-                {this.state.peliculasTodas.slice(0, this.state.limite).map(movie => (
+                {peliculasBusqueda.slice(0, this.state.limite).map(movie => (
                   <Card 
                     key={movie.id}
                     id={movie.id}
