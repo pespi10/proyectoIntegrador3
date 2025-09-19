@@ -11,8 +11,9 @@ class DetailSerie extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      series:[],
-      cargandoSeries:true
+      series: null,
+      cargandoSeries:true,
+      error: null
     }
   }
 
@@ -26,7 +27,7 @@ class DetailSerie extends Component {
       }))
       .catch(error => {
         console.log('El error fue: ' + error)
-        this.setState({ cargandoSeries: false })
+        this.setState({ cargandoSeries: false, error: 'Serie no encontrada' })
     })
   }
 
@@ -35,17 +36,25 @@ class DetailSerie extends Component {
       <React.Fragment>
         <section className="card-container">
         
-          {this.state.cargandoSeries ? (
+         {this.state.cargandoSeries ? (
             <p>Cargando...</p>
-          ) : this.state.series.length > 0 ? (
-            <Card 
-            key={this.state.series.id}
-            id={this.state.series.id}
-            name={this.state.series.name}
-            img={`https://image.tmdb.org/t/p/w500${this.state.series.poster_path}`}
-            desc={this.state.series.overview}
-            link={`/peliculas/detalle/${this.state.series.id}`}
-            />
+          ) : this.state.series && this.state.series.id ? (
+            <>
+              <Card
+                key={this.state.series.id}
+                id={this.state.series.id}
+                name={this.state.series.name}
+                img={`https://image.tmdb.org/t/p/w500${this.state.series.poster_path}`}
+                desc={this.state.series.overview}
+                link={`/detalle/serie/id/${this.state.series.id}`} />
+                
+                <ul>
+                  <li>Clasificacion: {this.state.series.vote_average}</li>
+                  <li>Fecha de estreno: {this.state.series.first_air_date}</li>
+                  <li>Generos: {this.state.series.genres && this.state.series.genres.map(g => g.name).join(", ")}</li>
+                </ul>
+              </>
+
           ) : (
             <p>Serie no encontrada</p>
           )}

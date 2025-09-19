@@ -117,7 +117,7 @@ const options = {
                     name={movie.title}
                     img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     desc={movie.overview}
-                    link={`/peliculas/detalle/${movie.id}`}
+                    link={`/detalle/pelicula/id/${movie.id}`}
                   />
                 ))}
               </section>
@@ -138,7 +138,7 @@ const options = {
                     name={movie.title}
                     img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     desc={movie.overview}
-                    link={`/peliculas/detalle/${movie.id}`}
+                    link={`/detalle/pelicula/id/${movie.id}`}
                   />
                 ))}
               </section>

@@ -50,7 +50,7 @@ render (){
             name={card.title}
             img={'https://image.tmdb.org/t/p/w500'+ card.backdrop_path}
             desc={card.overview}
-            link={'/detalles/id/'+card.id}
+            link={'/detalle/pelicula/id/'+card.id}
           />
         ))}    
         
