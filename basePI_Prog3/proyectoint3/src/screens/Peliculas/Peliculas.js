@@ -18,9 +18,10 @@ const options = {
       peliculasTodas: [],
       limite: 6,
       input:'',
+      inputPopular:"",
       popularesTodas: [],
       limitePopular: 6,
-      inputPopular: ''
+      listaUnica: []
     };
 
   }
@@ -36,7 +37,8 @@ const options = {
       .then(data => {
         this.setState({
           peliculasTodas: data.results
-        });
+        }
+      );
       })
       .catch(error => {
         console.log('Error al cargar películas en cartel:', error)
@@ -48,13 +50,16 @@ const options = {
       .then(data => {
         this.setState({
           popularesTodas: data.results
-        });
+        }
+      );
       })
       .catch(error => {
         console.log('Error al cargar películas en cartel:', error)
       });
   }
 
+
+  
   cargarMas= () => {
 
     this.setState(mas=>({
@@ -95,7 +100,7 @@ const options = {
 
   render(){
      let peliculasBusqueda = this.state.input === '' ? this.state.peliculasTodas : this.state.peliculasTodas.filter(pelicula => pelicula.title.toLowerCase().includes(this.state.input.toLowerCase()))
-    let peliculasBusquedaPopular = this.state.inputPopular === '' ? this.state.popularesTodas : this.state.popularesTodas.filter(pelicula => pelicula.title.toLowerCase().includes(this.state.inputPopular.toLowerCase()))
+    let peliculasBusquedaPopular = this.state.input === '' ? this.state.popularesTodas : this.state.popularesTodas.filter(pelicula => pelicula.title.toLowerCase().includes(this.state.input.toLowerCase()))
      return(
         <React.Fragment>
         
@@ -125,10 +130,7 @@ const options = {
 
      <h2>Movies most popular</h2>
 
-     <form className="buscador" onSubmit={(event)=>this.evitarSubmitPop(event)}>
-          <input type='text' placeholder="Buscar una pelicula..." onChange={(event)=>this.controlarCambiosPopular(event)} value={this.state.inputPopular}></input>
-          <input type="submit" value="Buscar"/>
-        </form>
+    
 
      <section className="card-container">
                 {peliculasBusquedaPopular.slice(0, this.state.limitePopular).map(movie => (

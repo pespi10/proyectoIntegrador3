@@ -96,7 +96,7 @@ const options = {
 
   render(){
      let seriesBusqueda = this.state.input === '' ? this.state.seriesTodas : this.state.seriesTodas.filter(pelicula => pelicula.name.toLowerCase().includes(this.state.input.toLowerCase()))
-    let seriesBusquedaPopular = this.state.inputPopular === '' ? this.state.popularesTodas : this.state.popularesTodas.filter(pelicula => pelicula.name.toLowerCase().includes(this.state.inputPopular.toLowerCase()))
+    let seriesBusquedaPopular = this.state.input === '' ? this.state.popularesTodas : this.state.popularesTodas.filter(pelicula => pelicula.name.toLowerCase().includes(this.state.input.toLowerCase()))
      return(
         <React.Fragment>
         
@@ -126,10 +126,7 @@ const options = {
 
      <h2>Series most popular</h2>
 
-     <form className="buscador" onSubmit={(event)=>this.evitarSubmitPop(event)}>
-          <input type='text' placeholder="Buscar una pelicula..." onChange={(event)=>this.controlarCambiosPopular(event)} value={this.state.inputPopular}></input>
-          <input type="submit" value="Buscar"/>
-        </form>
+    
 
      <section className="card-container">
                 {seriesBusquedaPopular.slice(0, this.state.limitePopular).map(movie => (
