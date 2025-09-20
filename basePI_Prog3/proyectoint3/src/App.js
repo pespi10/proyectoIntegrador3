@@ -13,7 +13,7 @@ import TopRated from './screens/TopRated/TopRated'
 import SearchResults from './screens/SearchResults/SearchResults'
 import DetailMovie from './screens/DetailMovie/DetailMovie';
 import DetailSerie from './screens/DetailSerie/DetailSerie';
-
+import Error from './screens/Error/Error';
 
 function App() {
   return (
