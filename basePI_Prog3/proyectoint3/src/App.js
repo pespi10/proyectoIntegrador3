@@ -31,7 +31,7 @@ function App() {
         <Route path="/series/toprated" exact={true} component={TopRated}/>
         <Route path="/detalle/serie/id/:id" component={DetailSerie}/>
         <Route path="/favoritos" exact={true} component={Favorites} />
-        <Route path="/results/:title" component={SearchResults}/>
+        <Route path="/results/:tipo/:query" component={SearchResults} />
         <Route component={Error} />
       </Switch>
       
