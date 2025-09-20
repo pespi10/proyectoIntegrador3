@@ -52,7 +52,11 @@ agregarFavoritos = () => {
   } else {
     favsArray = favsArray.filter(fav => fav.id !== this.props.id && fav.type === type);
     localStorage.setItem('Favs', JSON.stringify(favsArray));
-    this.setState({fav: false});
+    this.setState({ fav: false }, () => {
+  if (this.props.onUnFavorite) {
+    this.props.onUnFavorite(this.props.id, type);
+  }
+});
   }
 }
 render(){
