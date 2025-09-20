@@ -15,6 +15,10 @@ class Home extends Component {
     this.state = {
       nowPlaying: [],
       popular: [],
+      airing:[],
+      topRated:[],
+      cargandoTopRated:true,
+      cargandoAiring:true,
       cargandoPlaying: true,
       cargandoPopular: true
     }
@@ -23,6 +27,8 @@ class Home extends Component {
   componentDidMount() {
     this.NowPlaying();
     this.Popular();
+    this.AiringToday();
+    this.TopRated();
   }
 
   NowPlaying = () => {
@@ -54,6 +60,34 @@ class Home extends Component {
         this.setState({ cargandoPopular: false });
       });
   }
+  AiringToday = () => {
+    fetch('https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=1', options)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          airing: data.results.slice(0, 4), 
+          cargandoAiring: false
+        });
+      })
+      .catch(error => {
+        console.log('Error al cargar series airing today:', error);
+        this.setState({ cargandoAiring: false });
+      });
+  }
+  TopRated = () => {
+    fetch('https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1', options)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          topRated: data.results.slice(0, 4), 
+          cargandoTopRated: false
+        });
+      })
+      .catch(error => {
+        console.log('Error al cargar series top rated:', error);
+        this.setState({ cargandoTopRated: false });
+      });
+  }
 
   render() {
     return (
@@ -63,8 +97,7 @@ class Home extends Component {
           <Search />
           <section>
             <div>
-              <h2>Movies now playing</h2>
-              <Link to="/peliculas/nowplaying">Ver todas</Link>
+            <Link to="/peliculas/nowplaying"><h2>Movies now playing</h2></Link>
             </div>
             
             {this.state.cargandoPlaying ? (
@@ -78,7 +111,7 @@ class Home extends Component {
                     name={movie.title}
                     img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     desc={movie.overview}
-                    link={`/peliculas/detalle/${movie.id}`}
+                    link={`/detalle/pelicula/id/${movie.id}`}
                   />
                 ))}
               </section>
@@ -86,8 +119,7 @@ class Home extends Component {
           </section>
           <section>
             <div>
-              <h2>Popular movies this week</h2>
-              <Link to="/peliculas/popular">Ver todas</Link>
+            <Link to="/peliculas/popular"><h2>Popular movies this week</h2></Link>
             </div>
             
             {this.state.cargandoPopular ? (
@@ -101,12 +133,57 @@ class Home extends Component {
                     name={movie.title}
                     img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     desc={movie.overview}
-                    link={`/peliculas/detalle/${movie.id}`}
+                    link={`/detalle/pelicula/id/${movie.id}`}
                   />
                 ))}
               </section>
             )}
           </section>
+          <section>
+            <div>
+            <Link to="/series/airing"><h2>TV Series Airing Today</h2></Link>
+            </div>
+            
+            {this.state.cargandoAiring ? (
+              <p>Loading TV Series...</p>
+            ) : (
+              <section className="card-container">
+                {this.state.airing.map(series => (
+                  <Card 
+                    key={series.id}
+                    id={series.id}
+                    name={series.name}
+                    img={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
+                    desc={series.overview}
+                    link={`/detalle/serie/id/${series.id}`}
+                  />
+                ))}
+              </section>
+            )}
+          </section>
+          <section>
+            <div>
+            <Link to="/series/toprated"><h2>TV Series Top Rated</h2></Link>
+            </div>
+            
+            {this.state.cargandoTopRated ? (
+              <p>Loading TV Series...</p>
+            ) : (
+              <section className="card-container">
+                {this.state.topRated.map(series => (
+                  <Card 
+                    key={series.id}
+                    id={series.id}
+                    name={series.name}
+                    img={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
+                    desc={series.overview}
+                    link={`/detalle/serie/id/${series.id}`}
+                  />
+                ))}
+              </section>
+            )}
+          </section>
+          
         </main>
       </React.Fragment>
     );

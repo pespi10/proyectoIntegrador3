@@ -15,7 +15,7 @@ controlarCambios = (event) => {
 evitarSubmit = (event)=>{
   event.preventDefault();
   if (this.state.name.trim() !== '') {
-    this.props.history.push('/busqueda/' + this.state.name);
+    this.props.history.push('/results/' + this.state.name);
   }
 
 }
