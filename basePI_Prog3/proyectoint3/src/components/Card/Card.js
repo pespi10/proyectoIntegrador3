@@ -30,37 +30,30 @@ boton(){
     }
 }
 componentDidMount(){
+  let type = this.props.link && this.props.link.includes("/detalle/serie/") ? "serie" : "movie";
   let favsString = localStorage.getItem('Favs');
   let favsArray = favsString ? JSON.parse(favsString) : [];
-  let esFavorito = favsArray.some(fav => fav.id === this.props.id);
+  let esFavorito = favsArray.some(fav => fav.id === this.props.id && fav.type === type);
 
   this.setState({
     fav: esFavorito
   });
 }
 agregarFavoritos = () => {
+  let type = this.props.link && this.props.link.includes("/detalle/serie/") ? "serie" : "movie";
   let favsString = localStorage.getItem('Favs');
   let favsArray = favsString ? JSON.parse(favsString) : [];
+  let esFavorito = favsArray.some(fav => fav.id === this.props.id && fav.type === type);
 
-  if (this.state.fav === false) {
-    if (!favsArray.find(fav => fav.id === this.props.id)) {
-      favsArray.push(this.props);
+  if (!esFavorito) {
+      favsArray.push({id: this.props.id, type: type});
       localStorage.setItem('Favs', JSON.stringify(favsArray));
-    }
-    
-    this.setState({
-      fav: true
-    });
+      this.setState({fav: true});
   } else {
-    favsArray = favsArray.filter(fav => fav.id !== this.props.id);
+    favsArray = favsArray.filter(fav => fav.id !== this.props.id && fav.type === type);
     localStorage.setItem('Favs', JSON.stringify(favsArray));
-  
-    this.setState({
-      fav: false
-    });
+    this.setState({fav: false});
   }
-  console.log(favsArray);
-  
 }
 render(){
     return (
