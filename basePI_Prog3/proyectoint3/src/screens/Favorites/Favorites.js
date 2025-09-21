@@ -88,9 +88,9 @@ class Favorites extends Component {
                 key={m.id}
                   id={m.id}
                   name={m.title}
-                  img={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
+                  img={`https://image.tmdb.org/t/p/w342${m.poster_path}`}
                   desc={m.overview}
-                  link={`/detalle/pelicula/id/${m.id}`}
+                  link={`/detalle/movie/id/${m.id}`}
                   sacarFav={this.remove}
                 />
             ))
@@ -107,9 +107,9 @@ class Favorites extends Component {
                 key={s.id}
                   id={s.id}
                   name={s.name}
-                  img={`https://image.tmdb.org/t/p/w500${s.poster_path}`}
+                  img={`https://image.tmdb.org/t/p/w342/${s.poster_path}`}
                   desc={s.overview}
-                  link={`/detalle/serie/id/${s.id}`}
+                  link={`/detalle/tv/id/${s.id}`}
                   sacarFav={this.remove}
                 />
             ))

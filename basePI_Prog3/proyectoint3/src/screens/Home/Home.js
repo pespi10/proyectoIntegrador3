@@ -98,7 +98,7 @@ class Home extends Component {
                     key={movie.id}
                     id={movie.id}
                     name={movie.title}
-                    img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    img={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
                     desc={movie.overview}
                     link={`/detalle/movie/id/${movie.id}`}
                   />
@@ -120,7 +120,7 @@ class Home extends Component {
                     key={movie.id}
                     id={movie.id}
                     name={movie.title}
-                    img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    img={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
                     desc={movie.overview}
                     link={`/detalle/movie/id/${movie.id}`}
                   />
@@ -142,7 +142,7 @@ class Home extends Component {
                     key={series.id}
                     id={series.id}
                     name={series.name}
-                    img={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
+                    img={`https://image.tmdb.org/t/p/w342${series.poster_path}`}
                     desc={series.overview}
                     link={`/detalle/tv/id/${series.id}`}
                   />
@@ -164,7 +164,7 @@ class Home extends Component {
                     key={series.id}
                     id={series.id}
                     name={series.name}
-                    img={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
+                    img={`https://image.tmdb.org/t/p/w342${series.poster_path}`}
                     desc={series.overview}
                     link={`/detalle/tv/id/${series.id}`}
                   />

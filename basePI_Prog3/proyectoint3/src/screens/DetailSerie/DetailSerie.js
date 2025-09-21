@@ -45,7 +45,7 @@ class DetailSerie extends Component {
               key={this.state.series.id}
               id={this.state.series.id}
               name={this.state.series.name}
-              img={`https://image.tmdb.org/t/p/w500${this.state.series.poster_path}`}
+              img={`https://image.tmdb.org/t/p/w342${this.state.series.poster_path}`}
               desc={this.state.series.overview}
               link={`/detalle/tv/id/${this.state.series.id}`}
               extraInfo={[

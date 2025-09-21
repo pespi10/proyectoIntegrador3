@@ -45,7 +45,7 @@ class DetailMovie extends Component {
               key={this.state.pelis.id}
               id={this.state.pelis.id}
               name={this.state.pelis.title}
-              img={`https://image.tmdb.org/t/p/w500${this.state.pelis.poster_path}`}
+              img={`https://image.tmdb.org/t/p/w342${this.state.pelis.poster_path}`}
               desc={this.state.pelis.overview}
               link={`/detalle/movie/id/${this.state.pelis.id}`}
               extraInfo={[

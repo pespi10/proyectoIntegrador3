@@ -121,7 +121,7 @@ const options = {
                     key={movie.id}
                     id={movie.id}
                     name={movie.title}
-                    img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    img={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
                     desc={movie.overview}
                     link={`/detalle/pelicula/id/${movie.id}`}
                   />
@@ -139,7 +139,7 @@ const options = {
                     key={movie.id}
                     id={movie.id}
                     name={movie.title}
-                    img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    img={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
                     desc={movie.overview}
                     link={`/detalle/pelicula/id/${movie.id}`}
                   />

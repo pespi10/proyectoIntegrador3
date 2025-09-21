@@ -54,7 +54,7 @@ class Home extends Component {
                     key={series.id}
                     id={series.id}
                     name={series.name}
-                    img={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
+                    img={`https://image.tmdb.org/t/p/w342${series.poster_path}`}
                     desc={series.overview}
                     link={`/detalle/serie/id/${series.id}`}
                   />

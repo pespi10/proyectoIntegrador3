@@ -49,7 +49,7 @@ render (){
             key={card.id}
             id={card.id}
             name={card.title}
-            img={'https://image.tmdb.org/t/p/w500'+ card.backdrop_path}
+            img={'https://image.tmdb.org/t/p/w342'+ card.backdrop_path}
             desc={card.overview}
             link={'/detalle/pelicula/id/'+card.id}
           />
