@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card from "../../components/Card/Card";
+import DetailCard from "../../components/DetailCard/DetailCard";
 import Loader from "../../components/Loader/Loader";
 const options = {
     method: 'GET',
@@ -41,19 +41,19 @@ class DetailSerie extends Component {
             <Loader />
           ) : this.state.series && this.state.series.id ? (
             <>
-              <Card
-                key={this.state.series.id}
-                id={this.state.series.id}
-                name={this.state.series.name}
-                img={`https://image.tmdb.org/t/p/w500${this.state.series.poster_path}`}
-                desc={this.state.series.overview}
-                link={`/detalle/serie/id/${this.state.series.id}`} />
-                
-                <ul>
-                  <li>Clasificacion: {this.state.series.vote_average}</li>
-                  <li>Fecha de estreno: {this.state.series.first_air_date}</li>
-                  <li>Generos: {this.state.series.genres && this.state.series.genres.map(g => g.name).join(", ")}</li>
-                </ul>
+              <DetailCard
+              key={this.state.series.id}
+              id={this.state.series.id}
+              name={this.state.series.name}
+              img={`https://image.tmdb.org/t/p/w500${this.state.series.poster_path}`}
+              desc={this.state.series.overview}
+              link={`/detalle/pelicula/id/${this.state.series.id}`}
+              extraInfo={[
+                { label: "Clasificación", value: `${this.state.series.vote_average}/10` },
+                { label: "Fecha de estreno", value: this.state.series.release_date },
+                { label: "Duración", value: `${this.state.series.runtime} minutos` },
+                { label: "Géneros", value: this.state.series.genres && this.state.series.genres.map(g => g.name).join(", ") }
+              ]} />
               </>
 
           ) : (

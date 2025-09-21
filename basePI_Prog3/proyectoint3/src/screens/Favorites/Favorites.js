@@ -68,6 +68,7 @@ class Favorites extends Component {
     } else {
       this.setState((prev) => ({ series: prev.series.filter((s) => s.id !== id) }));
     }
+
   };
 
   render() {
@@ -90,7 +91,7 @@ class Favorites extends Component {
                   img={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
                   desc={m.overview}
                   link={`/detalle/pelicula/id/${m.id}`}
-                  onUnFavorite={this.remove}
+                  sacarFav={this.remove}
                 />
             ))
           )}
@@ -109,7 +110,7 @@ class Favorites extends Component {
                   img={`https://image.tmdb.org/t/p/w500${s.poster_path}`}
                   desc={s.overview}
                   link={`/detalle/serie/id/${s.id}`}
-                  onUnFavorite={this.remove}
+                  sacarFav={this.remove}
                 />
             ))
           )}

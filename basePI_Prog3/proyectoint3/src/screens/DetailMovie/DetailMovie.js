@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card from "../../components/Card/Card";
+import DetailCard from "../../components/DetailCard/DetailCard";
 import Loader from "../../components/Loader/Loader";
 const options = {
     method: 'GET',
@@ -41,22 +41,19 @@ class DetailMovie extends Component {
             <Loader />
           ) : this.state.pelis ? (
             <>
-            <Card
+            <DetailCard
               key={this.state.pelis.id}
               id={this.state.pelis.id}
               name={this.state.pelis.title}
               img={`https://image.tmdb.org/t/p/w500${this.state.pelis.poster_path}`}
               desc={this.state.pelis.overview}
-              link={`/detalle/pelicula/id/${this.state.pelis.id}`} />
-              
-              <ul>
-                <li>Clasificacion: {this.state.pelis.vote_average}</li>
-                <li>Fecha de estreno: {this.state.pelis.release_date}</li>
-                <li>Duracion: {this.state.pelis.runtime} minutos</li>
-                <li>Generos: {this.state.pelis.genres && this.state.pelis.genres.map(g=> g.name).join(", ")}</li>
-              </ul>
-                
-            
+              link={`/detalle/pelicula/id/${this.state.pelis.id}`}
+              extraInfo={[
+                { label: "Clasificación", value: `${this.state.pelis.vote_average}/10` },
+                { label: "Fecha de estreno", value: this.state.pelis.release_date },
+                { label: "Duración", value: `${this.state.pelis.runtime} minutos` },
+                { label: "Géneros", value: this.state.pelis.genres && this.state.pelis.genres.map(g => g.name).join(", ") }
+              ]} />
             </>
             
           ) : (
