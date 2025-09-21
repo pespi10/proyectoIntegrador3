@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "../../components/Card/Card";
+import Loader from "../../components/Loader/Loader";
 const options = {
     method: 'GET',
     headers: {
@@ -37,7 +38,7 @@ class DetailMovie extends Component {
         <section className="card-container">
         
           {this.state.cargandoPelis ? (
-            <p>Cargando...</p>
+            <Loader />
           ) : this.state.pelis ? (
             <>
             <Card

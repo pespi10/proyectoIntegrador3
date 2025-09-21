@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "../../components/Card/Card";
+import Loader from "../../components/Loader/Loader";
 
 const options = {
   method: "GET",
@@ -14,18 +15,19 @@ class Favorites extends Component {
   state = {
     movies: [],
     series: [],
-    
+    loading: true,
   };
 
   componentDidMount() {
     let favs = JSON.parse(localStorage.getItem("Favs") || "[]");
-    if (favs.length === 0) {
-      this.setState();
+    if (favs.length === 0) {this.setState({ loading: false });
       return;
     }
 
     let movies = [];
     let series = [];
+    let done = 0;
+    let total = favs.length;
     
 
     favs.map((f) =>
@@ -42,7 +44,7 @@ class Favorites extends Component {
           }
         })
         .catch(error => console.log('El error fue: '+ error))
-        
+        .then(() => {done+=1; if (done === total) this.setState({ loading: false })})
     );
   }
 
@@ -61,7 +63,8 @@ class Favorites extends Component {
   };
 
   render() {
-    let { movies, series } = this.state;
+    let { movies, series, loading } = this.state;
+    if (loading) return <Loader />;
     return (
       <main>
         <h1>Favoritos</h1>

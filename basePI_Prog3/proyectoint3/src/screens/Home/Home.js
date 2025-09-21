@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Search from '../../components/Search/Search';
 import Card from '../../components/Card/Card'
 import { Link } from 'react-router-dom';
+import Loader from '../../components/Loader/Loader';
 const options = {
     method: 'GET',
     headers: {
@@ -101,7 +102,7 @@ class Home extends Component {
             </div>
             
             {this.state.cargandoPlaying ? (
-              <p>Loading movies...</p>
+              <Loader />
             ) : (
               <section className="card-container">
                 {this.state.nowPlaying.map(movie => (
@@ -123,7 +124,7 @@ class Home extends Component {
             </div>
             
             {this.state.cargandoPopular ? (
-              <p>Loading movies...</p>
+              <Loader />
             ) : (
               <section className="card-container">
                 {this.state.popular.map(movie => (
@@ -145,7 +146,7 @@ class Home extends Component {
             </div>
             
             {this.state.cargandoAiring ? (
-              <p>Loading TV Series...</p>
+              <Loader />
             ) : (
               <section className="card-container">
                 {this.state.airing.map(series => (
@@ -167,7 +168,7 @@ class Home extends Component {
             </div>
             
             {this.state.cargandoTopRated ? (
-              <p>Loading TV Series...</p>
+              <Loader />
             ) : (
               <section className="card-container">
                 {this.state.topRated.map(series => (

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Card from "../Card/Card";
+import Loader from "../Loader/Loader";
 import './allmovies.css'
 
 const options = {
@@ -42,7 +43,7 @@ render (){
         <React.Fragment>
         <section className="card-container">
         
-        {this.state.datos.length === 0 ? <p>Cargando...</p>:
+        {this.state.datos.length === 0 ? < Loader/> :
         this.state.datos.map(card => (
           <Card 
             key={card.id}

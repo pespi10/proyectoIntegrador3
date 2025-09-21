@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from '../../components/Card/Card';
+import Loader from '../../components/Loader/Loader';
 
 
 const options = {
@@ -40,7 +41,7 @@ class SearchResults extends Component {
       <React.Fragment>
         <section className="card-container">
           {this.state.loading ? (
-            <p>Cargando...</p>
+            <Loader />
           ) : (
             this.state.datos.map(movie => (
               <Card

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Card from "../../components/Card/Card";
-
+import Loader from "../../components/Loader/Loader";
 const options = {
     method: 'GET',
     headers: {
@@ -38,7 +38,7 @@ class DetailSerie extends Component {
         <section className="card-container">
         
          {this.state.cargandoSeries ? (
-            <p>Cargando...</p>
+            <Loader />
           ) : this.state.series && this.state.series.id ? (
             <>
               <Card
