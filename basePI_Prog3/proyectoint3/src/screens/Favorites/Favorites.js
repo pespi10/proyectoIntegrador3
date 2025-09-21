@@ -26,26 +26,34 @@ class Favorites extends Component {
 
     let movies = [];
     let series = [];
-    let done = 0;
-    let total = favs.length;
-    
+ 
+  
+   
 
-    favs.map((f) =>
-      fetch(`https://api.themoviedb.org/3/${f.type === "movie" ? "movie" : "tv"}/${f.id}`, options)
+    favs.map((f) => {
+      let ruta = "movie";
+      if (f.type !== "movie") 
+        ruta = "tv";
+      
+    
+      fetch(`https://api.themoviedb.org/3/${ruta}/${f.id}`, options)
         .then(response => response.json())
         .then((item) => {
-          if (!item || !item.id) return;
           if (f.type === "movie") {
             movies.push(item);
             this.setState({ movies });
+            this.setState({loading: false})
           } else {
             series.push(item);
             this.setState({ series });
+            this.setState({loading: false})
           }
         })
-        .catch(error => console.log('El error fue: '+ error))
-        .then(() => {done+=1; if (done === total) this.setState({ loading: false })})
-    );
+        .catch(error => {
+          console.log('El error fue: '+ error);
+          this.setState({loading: false})
+        })
+  });
   }
 
 
