@@ -56,7 +56,7 @@ class Home extends Component {
                     name={series.name}
                     img={`https://image.tmdb.org/t/p/w342${series.poster_path}`}
                     desc={series.overview}
-                    link={`/detalle/serie/id/${series.id}`}
+                    link={`/detalle/tv/id/${series.id}`}
                   />
                 ))}
               </section>
