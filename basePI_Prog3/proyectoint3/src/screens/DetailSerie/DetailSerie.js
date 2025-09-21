@@ -47,7 +47,7 @@ class DetailSerie extends Component {
               name={this.state.series.name}
               img={`https://image.tmdb.org/t/p/w500${this.state.series.poster_path}`}
               desc={this.state.series.overview}
-              link={`/detalle/pelicula/id/${this.state.series.id}`}
+              link={`/detalle/tv/id/${this.state.series.id}`}
               extraInfo={[
                 { label: "Clasificación", value: `${this.state.series.vote_average}/10` },
                 { label: "Fecha de estreno", value: this.state.series.release_date },

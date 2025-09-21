@@ -25,11 +25,11 @@ function App() {
         <Route path="/peliculas" component={Peliculas}/>
         <Route path="/peliculas/nowplaying" exact={true} component={NowPlaying}/>
         <Route path="/peliculas/popular" exact={true} component={Popular}/>
-        <Route path="/detalle/pelicula/id/:id" component={DetailMovie}/>
+        <Route path="/detalle/movie/id/:id" component={DetailMovie}/>
         <Route path="/series" exact={true} component={Series} />
         <Route path="/series/airing" exact={true} component={AiringToday}/>
         <Route path="/series/toprated" exact={true} component={TopRated}/>
-        <Route path="/detalle/serie/id/:id" component={DetailSerie}/>
+        <Route path="/detalle/tv/id/:id" component={DetailSerie}/>
         <Route path="/favoritos" exact={true} component={Favorites} />
         <Route path="/results/:tipo/:query" component={SearchResults} />
         <Route component={Error} />

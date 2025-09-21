@@ -18,9 +18,9 @@ const options = {
       seriesTodas: [],
       limite: 6,
       input:'',
-      popularesTodas: [],
-      limitePopular: 6,
-      inputPopular: '',
+      topRatedTodas: [],
+      limiteTopRated: 6,
+      inputTopRated: '',
       seriesBuscador:[]
     };
 
@@ -28,7 +28,7 @@ const options = {
 
   componentDidMount(){
     this.seriesTotal();
-    this.seriesPopulares()
+    this.seriesTopRated()
   }
 
   seriesTotal = () => {
@@ -43,12 +43,12 @@ const options = {
         console.log('Error al cargar películas en cartel:', error)
       });
   }
-  seriesPopulares = () => {
-    fetch('https://api.themoviedb.org/3/tv/popular', options)
+  seriesTopRated = () => {
+    fetch('https://api.themoviedb.org/3/tv/top_rated', options)
       .then(response => response.json())
       .then(data => {
         this.setState({
-          popularesTodas: data.results
+          topRatedTodas: data.results
         });
       })
       .catch(error => {
@@ -65,9 +65,9 @@ const options = {
 
   }
 
-  cargarMasPopular = () => {
+  cargarMasTopRated = () => {
     this.setState(mas => ({
-      limitePopular: mas.limitePopular + 6
+      limiteTopRated: mas.limiteTopRated + 6
     }));
   }
 
@@ -83,27 +83,27 @@ const options = {
   }
 
 
-  controlarCambiosPopular = (event) => {
-    this.setState({inputPopular: event.target.value}, ()=>console.log(this.state.inputPopular))
+  controlarCambiosTopRated = (event) => {
+    this.setState({inputTopRated: event.target.value}, ()=>console.log(this.state.inputTopRated))
   }
   evitarSubmitPop(event){
   event.preventDefault();
-  if (this.state.inputPopular.trim() !== '') {
-    this.props.history.push('/busqueda/' + this.state.inputPopular);
+  if (this.state.inputTopRated.trim() !== '') {
+    this.props.history.push('/busqueda/' + this.state.inputTopRated);
   }
 
   }
 
   render(){
      let seriesBusqueda = this.state.input === '' ? this.state.seriesTodas : this.state.seriesTodas.filter(pelicula => pelicula.name.toLowerCase().includes(this.state.input.toLowerCase()))
-    let seriesBusquedaPopular = this.state.input === '' ? this.state.popularesTodas : this.state.popularesTodas.filter(pelicula => pelicula.name.toLowerCase().includes(this.state.input.toLowerCase()))
+    let seriesBusquedatopRated = this.state.input === '' ? this.state.topRatedTodas : this.state.topRatedTodas.filter(pelicula => pelicula.name.toLowerCase().includes(this.state.input.toLowerCase()))
      return(
         <React.Fragment>
         
 
 
   <main>
-    <h2>Series airing today</h2>
+    <h2>Series Airing Today</h2>
 
     <form className="buscador" onSubmit={(event)=>this.evitarSubmit(event)}>
           <input type='text' placeholder="Buscar una pelicula..." onChange={(event)=>this.controlarCambios(event)} value={this.state.input}></input>
@@ -124,12 +124,12 @@ const options = {
               </section>
               <button onClick={() => this.cargarMas()}>Cargar más</button>
 
-     <h2>Series most popular</h2>
+     <h2>Series Top Rated</h2>
 
     
 
      <section className="card-container">
-                {seriesBusquedaPopular.slice(0, this.state.limitePopular).map(movie => (
+                {seriesBusquedatopRated.slice(0, this.state.limiteTopRated).map(movie => (
                   <Card 
                     key={movie.id}
                     id={movie.id}
@@ -140,7 +140,7 @@ const options = {
                   />
                 ))}
               </section>
-              <button onClick={() => this.cargarMasPopular()}>Cargar más</button>
+              <button onClick={() => this.cargarMasTopRated()}>Cargar más</button>
 
               </main>
              

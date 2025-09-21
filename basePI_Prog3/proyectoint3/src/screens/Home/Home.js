@@ -18,10 +18,6 @@ class Home extends Component {
       popular: [],
       airing:[],
       topRated:[],
-      cargandoTopRated:true,
-      cargandoAiring:true,
-      cargandoPlaying: true,
-      cargandoPopular: true
     }
   }
 
@@ -38,12 +34,10 @@ class Home extends Component {
       .then(data => {
         this.setState({
           nowPlaying: data.results.slice(0, 4), 
-          cargandoPlaying: false
         });
       })
       .catch(error => {
         console.log('Error al cargar películas en cartel:', error);
-        this.setState({ cargandoPlaying: false });
       });
   }
 
@@ -53,12 +47,10 @@ class Home extends Component {
       .then(data => {
         this.setState({
           popular: data.results.slice(0, 4), 
-          cargandoPopular: false
         });
       })
       .catch(error => {
         console.log('Error al cargar películas populares:', error);
-        this.setState({ cargandoPopular: false });
       });
   }
   AiringToday = () => {
@@ -67,12 +59,10 @@ class Home extends Component {
       .then(data => {
         this.setState({
           airing: data.results.slice(0, 4), 
-          cargandoAiring: false
         });
       })
       .catch(error => {
         console.log('Error al cargar series airing today:', error);
-        this.setState({ cargandoAiring: false });
       });
   }
   TopRated = () => {
@@ -81,12 +71,10 @@ class Home extends Component {
       .then(data => {
         this.setState({
           topRated: data.results.slice(0, 4), 
-          cargandoTopRated: false
         });
       })
       .catch(error => {
         console.log('Error al cargar series top rated:', error);
-        this.setState({ cargandoTopRated: false });
       });
   }
 
@@ -101,7 +89,7 @@ class Home extends Component {
             <Link to="/peliculas/nowplaying"><h2>Movies now playing</h2></Link>
             </div>
             
-            {this.state.cargandoPlaying ? (
+            {this.state.nowPlaying.length === 0 ? (
               <Loader />
             ) : (
               <section className="card-container">
@@ -112,7 +100,7 @@ class Home extends Component {
                     name={movie.title}
                     img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     desc={movie.overview}
-                    link={`/detalle/pelicula/id/${movie.id}`}
+                    link={`/detalle/movie/id/${movie.id}`}
                   />
                 ))}
               </section>
@@ -123,7 +111,7 @@ class Home extends Component {
             <Link to="/peliculas/popular"><h2>Popular movies this week</h2></Link>
             </div>
             
-            {this.state.cargandoPopular ? (
+            {this.state.popular.length === 0 ? (
               <Loader />
             ) : (
               <section className="card-container">
@@ -134,7 +122,7 @@ class Home extends Component {
                     name={movie.title}
                     img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     desc={movie.overview}
-                    link={`/detalle/pelicula/id/${movie.id}`}
+                    link={`/detalle/movie/id/${movie.id}`}
                   />
                 ))}
               </section>
@@ -145,7 +133,7 @@ class Home extends Component {
             <Link to="/series/airing"><h2>TV Series Airing Today</h2></Link>
             </div>
             
-            {this.state.cargandoAiring ? (
+            {this.state.airing.length === 0 ? (
               <Loader />
             ) : (
               <section className="card-container">
@@ -156,7 +144,7 @@ class Home extends Component {
                     name={series.name}
                     img={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
                     desc={series.overview}
-                    link={`/detalle/serie/id/${series.id}`}
+                    link={`/detalle/tv/id/${series.id}`}
                   />
                 ))}
               </section>
@@ -167,7 +155,7 @@ class Home extends Component {
             <Link to="/series/toprated"><h2>TV Series Top Rated</h2></Link>
             </div>
             
-            {this.state.cargandoTopRated ? (
+            {this.state.topRated.length === 0 ? (
               <Loader />
             ) : (
               <section className="card-container">
@@ -178,7 +166,7 @@ class Home extends Component {
                     name={series.name}
                     img={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
                     desc={series.overview}
-                    link={`/detalle/serie/id/${series.id}`}
+                    link={`/detalle/tv/id/${series.id}`}
                   />
                 ))}
               </section>

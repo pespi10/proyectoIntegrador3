@@ -47,7 +47,7 @@ class DetailMovie extends Component {
               name={this.state.pelis.title}
               img={`https://image.tmdb.org/t/p/w500${this.state.pelis.poster_path}`}
               desc={this.state.pelis.overview}
-              link={`/detalle/pelicula/id/${this.state.pelis.id}`}
+              link={`/detalle/movie/id/${this.state.pelis.id}`}
               extraInfo={[
                 { label: "Clasificación", value: `${this.state.pelis.vote_average}/10` },
                 { label: "Fecha de estreno", value: this.state.pelis.release_date },
