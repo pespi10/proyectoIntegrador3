@@ -27,36 +27,33 @@ const options = {
   }
 
   componentDidMount(){
-    this.seriesTotal();
-    this.seriesTopRated()
-  }
-
-  seriesTotal = () => {
     fetch('https://api.themoviedb.org/3/tv/airing_today', options)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          seriesTodas: data.results
-        });
-      })
-      .catch(error => {
-        console.log('Error al cargar películas en cartel:', error)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        seriesTodas: data.results
       });
-  }
-  seriesTopRated = () => {
-    fetch('https://api.themoviedb.org/3/tv/top_rated', options)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          topRatedTodas: data.results
-        });
-      })
-      .catch(error => {
-        console.log('Error al cargar películas en cartel:', error)
+    })
+    .catch(error => {
+      console.log('Error al cargar películas en cartel:', error)
+    });
+
+  fetch('https://api.themoviedb.org/3/tv/top_rated', options)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        topRatedTodas: data.results
       });
+    })
+    .catch(error => {
+      console.log('Error al cargar películas en cartel:', error)
+    });
+   
   }
 
-  cargarMas= () => {
+  
+
+  cargarMas(){
 
     this.setState(mas=>({
       limite: mas.limite + 4
