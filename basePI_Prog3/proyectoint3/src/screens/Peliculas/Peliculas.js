@@ -17,11 +17,11 @@ const options = {
     super(props);
     this.state = {
       peliculasTodas: [],
-      limite: 6,
+      limite: 4,
       input:'',
       inputPopular:"",
       popularesTodas: [],
-      limitePopular: 6,
+      limitePopular: 4,
       listaUnica: []
     };
 

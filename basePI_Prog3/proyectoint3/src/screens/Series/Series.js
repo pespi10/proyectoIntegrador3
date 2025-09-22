@@ -16,10 +16,10 @@ const options = {
     super(props);
     this.state = {
       seriesTodas: [],
-      limite: 6,
+      limite: 4,
       input:'',
       topRatedTodas: [],
-      limiteTopRated: 6,
+      limiteTopRated: 4,
       inputTopRated: '',
       seriesBuscador:[]
     };
