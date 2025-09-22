@@ -40,7 +40,7 @@ class DetailMovie extends Component {
           {this.state.cargandoPelis ? (
             <Loader />
           ) : this.state.pelis ? (
-            <>
+            
             <DetailCard
               key={this.state.pelis.id}
               id={this.state.pelis.id}
@@ -48,13 +48,12 @@ class DetailMovie extends Component {
               img={`https://image.tmdb.org/t/p/w342${this.state.pelis.poster_path}`}
               desc={this.state.pelis.overview}
               link={`/detalle/movie/id/${this.state.pelis.id}`}
-              extraInfo={[
-                { nombre: "Clasificación", valor: `${this.state.pelis.vote_average}/10` },
-                { nombre: "Fecha de estreno", valor: this.state.pelis.release_date },
-                { nombre: "Duración", valor: `${this.state.pelis.runtime} minutos` },
-                { nombre: "Géneros", valor: this.state.pelis.genres && this.state.pelis.genres.map(g => g.name).join(", ") }
-              ]} />
-            </>
+              Clasificación={`${this.state.pelis.vote_average}/10`}
+              FechaEstreno= {this.state.pelis.release_date}
+              Duración={`${this.state.pelis.runtime} minutos`}
+              Géneros= {this.state.pelis.genres && this.state.pelis.genres.map(g => g.name).join(", ") }
+               />
+          
             
           ) : (
             <p>Pelicula no encontrada</p>

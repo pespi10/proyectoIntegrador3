@@ -48,12 +48,10 @@ class DetailSerie extends Component {
               img={`https://image.tmdb.org/t/p/w342${this.state.series.poster_path}`}
               desc={this.state.series.overview}
               link={`/detalle/tv/id/${this.state.series.id}`}
-              extraInfo={[
-                { nombre: "Clasificación", valor: `${this.state.series.vote_average}/10` },
-                { nombre: "Fecha de estreno", valor: this.state.series.first_air_date},
-                { nombre: "Duración", valor: `${this.state.series.runtime} minutos` },
-                { nombre: "Géneros", valor: this.state.series.genres && this.state.series.genres.map(g => g.name).join(", ") }
-              ]} />
+              Clasificación={`${this.state.series.vote_average}/10`}
+              FechaEstreno= {this.state.series.first_air_date}
+              Duración={`${this.state.series.runtime} minutos`}
+              Géneros= {this.state.series.genres && this.state.series.genres.map(g => g.name).join(", ") }/>
               </>
 
           ) : (

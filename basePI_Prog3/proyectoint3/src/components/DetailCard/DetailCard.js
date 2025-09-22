@@ -49,26 +49,34 @@ class DetailCard extends Component {
   render(){
     return (
         <article className='detail-card'>
-          <div className="movie-image">
-          <img src={this.props.img} alt=""/>
-          </div>
+            <div className="movie-image">
+              <img src={this.props.img} alt=""/>
+            </div>
           <div className="movie-content">
-        <h2 className="movie-title">{this.props.name}</h2>
-        <section className="movie-description">
-          <p>{this.props.desc}</p>
-        </section>
-        {this.props.extraInfo && (
-          <div className="extra-info">
-            <h3>Información Adicional</h3>
-            <div className="info-grid">
-              {this.props.extraInfo.map((info, index) => (
-                <div key={index} className="info-item">
-                  <strong>{info.nombre}:</strong> {info.valor}
+              <h2 className="movie-title">{this.props.name}</h2>
+              <section className="movie-description">
+                <p>{this.props.desc}</p>
+              </section>
+        
+            <div className="extra-info">
+              <h3>Información Adicional</h3>
+              <div className="info-grid">
+                <div className="info-item">
+                  <strong>Clasificación:</strong> {this.props.Clasificación}
                 </div>
-              ))}
+                <div className="info-item">
+                  <strong>Fecha de Estreno:</strong> {this.props.FechaEstreno}
+                </div>
+                <div className="info-item">
+                  <strong>Duración:</strong> {this.props.Duración}
+                </div>
+                <div className="info-item">
+                  <strong>Géneros:</strong> {this.props.Géneros}
+                </div>
             </div>
           </div>
-        )}
+            </div>
+        
         <button onClick={() => this.agregarFavoritos()} className="star">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
             fill={this.state.fav ? "gold" : "none"} 
@@ -78,7 +86,7 @@ class DetailCard extends Component {
           </svg>
           {this.state.fav}
         </button>
-        </div>
+        
         </article>
     );
   }
