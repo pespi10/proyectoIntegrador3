@@ -62,30 +62,30 @@ const options = {
 
   }
 
-  cargarMasTopRated = () => {
+  cargarMasTopRated(){
     this.setState(mas => ({
       limiteTopRated: mas.limiteTopRated + 4
     }));
   }
 
-   controlarCambios = (event) => {
+   controlarCambios(event){
     this.setState({input: event.target.value}, ()=>console.log(this.state.input))
   }
   evitarSubmit(event){
   event.preventDefault();
-  if (this.state.input.trim() !== '') {
+  if (this.state.input !== '') {
     this.props.history.push('/busqueda/' + this.state.input);
   }
 
   }
 
 
-  controlarCambiosTopRated = (event) => {
+  controlarCambiosTopRated(event){
     this.setState({inputTopRated: event.target.value}, ()=>console.log(this.state.inputTopRated))
   }
   evitarSubmitPop(event){
   event.preventDefault();
-  if (this.state.inputTopRated.trim() !== '') {
+  if (this.state.inputTopRated !== '') {
     this.props.history.push('/busqueda/' + this.state.inputTopRated);
   }
 
@@ -108,7 +108,7 @@ const options = {
         </form>
 
     <section className="card-container">
-                {seriesBusqueda.slice(0, this.state.limite).map(movie => (
+                {seriesBusqueda.filter((item,index)=> index < this.state.limite).map(movie => (
                   <Card 
                     key={movie.id}
                     id={movie.id}
@@ -126,7 +126,7 @@ const options = {
     
 
      <section className="card-container">
-                {seriesBusquedatopRated.slice(0, this.state.limiteTopRated).map(movie => (
+                {seriesBusquedatopRated.filter((item,index)=> index < this.state.limite).map(movie => (
                   <Card 
                     key={movie.id}
                     id={movie.id}

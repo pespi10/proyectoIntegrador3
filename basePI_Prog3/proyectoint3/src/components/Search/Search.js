@@ -10,15 +10,15 @@ class Search extends Component {
 
   }
 
-controlarCambios = (event) => {
+controlarCambios(event){
     this.setState({name: event.target.value})}
 
-controlarTipo = (event) => {
+controlarTipo(event){
     this.setState({ tipo: event.target.value });
   }
 
 
- evitarSubmit = (event) => {
+ evitarSubmit(event){
     event.preventDefault();
     if (this.state.name.trim() !== "") {
       this.props.history.push(

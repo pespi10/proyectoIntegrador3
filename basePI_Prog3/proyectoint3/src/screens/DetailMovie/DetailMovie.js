@@ -12,9 +12,9 @@ class DetailMovie extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      pelis: null,
+      pelis: [],
       cargandoPelis: true,
-      error: null
+      error: []
     }
   }
 

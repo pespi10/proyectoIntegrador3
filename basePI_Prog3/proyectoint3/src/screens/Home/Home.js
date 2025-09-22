@@ -26,8 +26,8 @@ class Home extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          nowPlaying: data.results.slice(0, 4), 
-        });
+          nowPlaying: data.results.filter((item,index)=> index < 4), 
+        }); 
       })
       .catch(error => {
         console.log('Error al cargar películas en cartel:', error);
@@ -38,7 +38,7 @@ class Home extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          popular: data.results.slice(0, 4), 
+          popular: data.results.filter((item,index)=> index < 4), 
         });
       })
       .catch(error => {
@@ -49,7 +49,7 @@ class Home extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          airing: data.results.slice(0, 4), 
+          airing: data.results.filter((item,index)=> index < 4), 
         });
       })
       .catch(error => {
@@ -60,7 +60,7 @@ class Home extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          topRated: data.results.slice(0, 4), 
+          topRated: data.results.filter((item,index)=> index < 4), 
         });
       })
       .catch(error => {

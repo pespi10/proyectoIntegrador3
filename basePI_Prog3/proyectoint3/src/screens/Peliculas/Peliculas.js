@@ -55,7 +55,7 @@ const options = {
 
  
   
-  cargarMas= () => {
+  cargarMas(){
 
     this.setState(mas=>({
       limite: mas.limite + 4
@@ -64,30 +64,30 @@ const options = {
 
   }
 
-  cargarMasPopular = () => {
+  cargarMasPopular(){
     this.setState(mas => ({
       limitePopular: mas.limitePopular + 4
     }));
   }
 
-   controlarCambios = (event) => {
+   controlarCambios(event){
     this.setState({input: event.target.value}, ()=>console.log(this.state.input))
   }
   evitarSubmit(event){
   event.preventDefault();
-  if (this.state.input.trim() !== '') {
+  if (this.state.input !== '') {
     this.props.history.push('/busqueda/' + this.state.input);
   }
 
   }
 
 
-  controlarCambiosPopular = (event) => {
+  controlarCambiosPopular(event){
     this.setState({inputPopular: event.target.value}, ()=>console.log(this.state.inputPopular))
   }
   evitarSubmitPop(event){
   event.preventDefault();
-  if (this.state.inputPopular.trim() !== '') {
+  if (this.state.inputPopular !== '') {
     this.props.history.push('/busqueda/' + this.state.inputPopular);
   }
 
@@ -110,7 +110,7 @@ const options = {
         </form>
 
     <section className="card-container">
-                {peliculasBusqueda.slice(0, this.state.limite).map(movie => (
+                {peliculasBusqueda.filter((item,index)=> index < this.state.limite).map(movie => (
                   <Card 
                     key={movie.id}
                     id={movie.id}
@@ -128,7 +128,7 @@ const options = {
     
 
      <section className="card-container">
-                {peliculasBusquedaPopular.slice(0, this.state.limitePopular).map(movie => (
+                {peliculasBusquedaPopular.filter((item,index)=> index < this.state.limite).map(movie => (
                   <Card 
                     key={movie.id}
                     id={movie.id}

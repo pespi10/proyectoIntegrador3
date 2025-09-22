@@ -30,7 +30,7 @@ class Home extends Component {
       console.log('Error al cargar series top rated:', error);
     });
   }
-  cargarMas= () => {
+  cargarMas(){
     this.setState(mas=>({
       limite: mas.limite + 6
     }))
@@ -49,7 +49,7 @@ class Home extends Component {
               <Loader />
             ) : (
               <section className="card-container">
-                {this.state.topRated.slice(0, this.state.limite).map(series => (
+                {this.state.topRated.filter((item,index)=> index < this.state.limite).map(series => (
                   <Card 
                     key={series.id}
                     id={series.id}

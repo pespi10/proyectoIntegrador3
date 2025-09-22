@@ -30,7 +30,7 @@ class Home extends Component {
       console.log('Error al cargar películas populares:', error);
     });
   }
-  cargarMas= () => {
+  cargarMas(){
     this.setState(mas=>({
       limite: mas.limite + 6
     }))
@@ -49,7 +49,7 @@ class Home extends Component {
               <Loader />
             ) : (
               <section className="card-container">
-                {this.state.popular.slice(0, this.state.limite).map(movie => (
+                {this.state.popular.filter((item,index)=> index < this.state.limite).map(movie => (
                   <Card 
                     key={movie.id}
                     id={movie.id}
