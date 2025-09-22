@@ -22,13 +22,6 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.NowPlaying();
-    this.Popular();
-    this.AiringToday();
-    this.TopRated();
-  }
-
-  NowPlaying = () => {
     fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
       .then(response => response.json())
       .then(data => {
@@ -39,9 +32,8 @@ class Home extends Component {
       .catch(error => {
         console.log('Error al cargar películas en cartel:', error);
       });
-  }
+  
 
-  Popular = () => {
     fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
       .then(response => response.json())
       .then(data => {
@@ -52,8 +44,7 @@ class Home extends Component {
       .catch(error => {
         console.log('Error al cargar películas populares:', error);
       });
-  }
-  AiringToday = () => {
+  
     fetch('https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=1', options)
       .then(response => response.json())
       .then(data => {
@@ -64,8 +55,7 @@ class Home extends Component {
       .catch(error => {
         console.log('Error al cargar series airing today:', error);
       });
-  }
-  TopRated = () => {
+  
     fetch('https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1', options)
       .then(response => response.json())
       .then(data => {
@@ -76,7 +66,10 @@ class Home extends Component {
       .catch(error => {
         console.log('Error al cargar series top rated:', error);
       });
+    
   }
+
+      
 
   render() {
     return (
