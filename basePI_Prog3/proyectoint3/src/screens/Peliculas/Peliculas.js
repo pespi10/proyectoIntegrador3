@@ -28,38 +28,32 @@ const options = {
   }
 
   componentDidMount(){
-    this.peliculasTotal();
-    this.peliculasPopulares()
-  }
-
-  peliculasTotal = () => {
     fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          peliculasTodas: data.results
-        }
-      );
-      })
-      .catch(error => {
-        console.log('Error al cargar películas en cartel:', error)
-      });
-  }
-  peliculasPopulares = () => {
-    fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          popularesTodas: data.results
-        }
-      );
-      })
-      .catch(error => {
-        console.log('Error al cargar películas en cartel:', error)
-      });
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        peliculasTodas: data.results
+      }
+    );
+    })
+    .catch(error => {
+      console.log('Error al cargar películas en cartel:', error)
+    });
+
+  fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        popularesTodas: data.results
+      }
+    );
+    })
+    .catch(error => {
+      console.log('Error al cargar películas en cartel:', error)
+    });
   }
 
-
+ 
   
   cargarMas= () => {
 
