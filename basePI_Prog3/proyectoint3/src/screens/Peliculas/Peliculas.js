@@ -64,7 +64,7 @@ const options = {
   cargarMas= () => {
 
     this.setState(mas=>({
-      limite: mas.limite + 6
+      limite: mas.limite + 4
     }))
 
 
@@ -72,7 +72,7 @@ const options = {
 
   cargarMasPopular = () => {
     this.setState(mas => ({
-      limitePopular: mas.limitePopular + 6
+      limitePopular: mas.limitePopular + 4
     }));
   }
 

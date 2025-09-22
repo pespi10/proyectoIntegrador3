@@ -59,7 +59,7 @@ const options = {
   cargarMas= () => {
 
     this.setState(mas=>({
-      limite: mas.limite + 6
+      limite: mas.limite + 4
     }))
 
 
@@ -67,7 +67,7 @@ const options = {
 
   cargarMasTopRated = () => {
     this.setState(mas => ({
-      limiteTopRated: mas.limiteTopRated + 6
+      limiteTopRated: mas.limiteTopRated + 4
     }));
   }
 
