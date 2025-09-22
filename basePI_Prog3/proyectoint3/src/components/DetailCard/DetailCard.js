@@ -21,8 +21,8 @@ class DetailCard extends Component {
     });
   }
 
-  agregarFavoritos = () => {
-    let type = this.props.link && this.props.link.includes("/detalle/serie/") ? "serie" : "movie";
+  agregarFavoritos(){
+    let type = this.props.link && this.props.link.includes("/detalle/tv/") ? "tv" : "movie";
     let favsString = localStorage.getItem('Favs');
     let favsArray = favsString ? JSON.parse(favsString) : [];
     let esFavorito = favsArray.some(fav => fav.id === this.props.id && fav.type === type);
@@ -34,11 +34,7 @@ class DetailCard extends Component {
     } else {
       favsArray = favsArray.filter(fav => fav.id !== this.props.id && fav.type === type);
       localStorage.setItem('Favs', JSON.stringify(favsArray));
-      this.setState({ fav: false }, () => {
-    if (this.props.onUnFavorite) {
-      this.props.onUnFavorite(this.props.id, type);
-    }
-  });
+      ;
     }
   }
 
@@ -59,7 +55,7 @@ class DetailCard extends Component {
             <div className="info-grid">
               {this.props.extraInfo.map((info, index) => (
                 <div key={index} className="info-item">
-                  <strong>{info.label}:</strong> {info.value}
+                  <strong>{info.nombre}:</strong> {info.valor}
                 </div>
               ))}
             </div>

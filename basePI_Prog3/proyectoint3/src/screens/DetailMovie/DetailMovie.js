@@ -49,10 +49,10 @@ class DetailMovie extends Component {
               desc={this.state.pelis.overview}
               link={`/detalle/movie/id/${this.state.pelis.id}`}
               extraInfo={[
-                { label: "Clasificación", value: `${this.state.pelis.vote_average}/10` },
-                { label: "Fecha de estreno", value: this.state.pelis.release_date },
-                { label: "Duración", value: `${this.state.pelis.runtime} minutos` },
-                { label: "Géneros", value: this.state.pelis.genres && this.state.pelis.genres.map(g => g.name).join(", ") }
+                { nombre: "Clasificación", valor: `${this.state.pelis.vote_average}/10` },
+                { nombre: "Fecha de estreno", valor: this.state.pelis.release_date },
+                { nombre: "Duración", valor: `${this.state.pelis.runtime} minutos` },
+                { nombre: "Géneros", valor: this.state.pelis.genres && this.state.pelis.genres.map(g => g.name).join(", ") }
               ]} />
             </>
             

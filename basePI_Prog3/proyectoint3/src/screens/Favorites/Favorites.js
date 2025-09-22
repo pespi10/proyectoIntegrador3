@@ -26,18 +26,12 @@ class Favorites extends Component {
     this.setState({ movies, series, loading: false });
   }
 
-  remove = (id, type) => {
-    let favs = JSON.parse(localStorage.getItem("Favs") || "[]").filter(
-      (x) => !(x.id === id && x.type === type)
-    );
-    localStorage.setItem("Favs", JSON.stringify(favs));
-
-    if (type === "movie") {
-      this.setState((p) => ({ movies: p.movies.filter((m) => m.id !== id) }));
-    } else {
-      this.setState((p) => ({ series: p.series.filter((s) => s.id !== id) }));
-    }
-  };
+  remove = (id) => {
+    let datosMovie = this.state.movies.filter(movie => movie.id !== id);
+    let datosTV = this.state.series.filter(serie => serie.id !== id);
+    this.setState({ movies: datosMovie, series: datosTV });
+  }
+ 
 
   render() {
     if (this.state.loading) return <Loader />;

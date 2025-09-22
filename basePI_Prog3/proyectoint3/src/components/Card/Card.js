@@ -39,7 +39,7 @@ componentDidMount(){
     fav: esFavorito
   });
 }
-agregarFavoritos = () => {
+agregarFavoritos(){
   let type = this.props.link && this.props.link.includes("/detalle/tv/") ? "tv" : "movie";
   let favsString = localStorage.getItem('Favs');
   let favsArray = favsString ? JSON.parse(favsString) : [];
