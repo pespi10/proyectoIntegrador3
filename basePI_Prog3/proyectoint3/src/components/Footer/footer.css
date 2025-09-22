@@ -1,15 +1,25 @@
 footer {
     background-color: #1e293b;
     text-align: center;
-    padding: 40px 20px;
+    padding: 30px 20px;
     color: #e2e8f0;
     width: 100%;
-    margin-top: 50px;
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
 }
 
 footer p {
     margin: 0;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 25px 15px;
+        margin-top: 30px;
+    }
+    
+    footer p {
+        font-size: 14px;
+    }
 }

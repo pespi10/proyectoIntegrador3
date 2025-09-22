@@ -12,9 +12,9 @@ class DetailSerie extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      series: null,
+      series: [],
       cargandoSeries:true,
-      error: null
+      error: []
     }
   }
 
@@ -39,7 +39,7 @@ class DetailSerie extends Component {
         
          {this.state.cargandoSeries ? (
             <Loader />
-          ) : this.state.series && this.state.series.id ? (
+          ) : this.state.series ? (
             <>
               <DetailCard
               key={this.state.series.id}
@@ -50,7 +50,7 @@ class DetailSerie extends Component {
               link={`/detalle/tv/id/${this.state.series.id}`}
               extraInfo={[
                 { label: "Clasificación", value: `${this.state.series.vote_average}/10` },
-                { label: "Fecha de estreno", value: this.state.series.release_date },
+                { label: "Fecha de estreno", value: this.state.series.first_air_date},
                 { label: "Duración", value: `${this.state.series.runtime} minutos` },
                 { label: "Géneros", value: this.state.series.genres && this.state.series.genres.map(g => g.name).join(", ") }
               ]} />
